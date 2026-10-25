@@ -6,6 +6,8 @@ import type { TableSummary } from "./statbank/schemas.js";
  *
  * Scoring: exact token hits > prefix/substring hits > character-trigram similarity.
  * Trigrams matter for Danish compounds ("elbiler" vs "personbiler").
+ * Tokens are lightly stemmed, queries expanded with a small synonym list (everyday words ->
+ * StatBank terms), and short, current titles are preferred. Tuned with evals/src/retrieval.ts.
  */
 
 export interface SearchDoc {
@@ -49,6 +51,58 @@ export function tokenize(s: string): string[] {
     .filter((t) => t.length > 1 && !STOPWORDS.has(t));
 }
 
+const SUFFIXES = ["erne", "ene", "er", "en", "et", "es", "s", "e"];
+
+/** Light Danish/English suffix stripping: "befolkningen" -> "befolkning", "deaths" -> "death". */
+export function stem(t: string): string {
+  for (const suf of SUFFIXES) if (t.endsWith(suf) && t.length - suf.length >= 4) return t.slice(0, -suf.length);
+  return t;
+}
+
+const stems = (s: string) => tokenize(s).map(stem);
+
+/** Everyday words -> the terms StatBank titles and variables use. Keys and values are plain words. */
+const SYNONYMS_RAW: Record<string, string> = {
+  elbil: "personbil drivmiddel",
+  elbiler: "personbil drivmiddel",
+  electric: "propellant",
+  folketal: "befolkning",
+  indbyggere: "befolkning omraade",
+  inhabitants: "population region",
+  kommune: "omraade",
+  kommuner: "omraade",
+  municipality: "region",
+  dodsfald: "doede",
+  doedsfald: "doede",
+  fodsler: "levendefoedte",
+  foedsler: "levendefoedte",
+  inflation: "forbrugerprisindeks consumer price index",
+  bnp: "bruttonationalprodukt",
+  gdp: "bruttonationalprodukt",
+  growth: "vaekst",
+  arbejdsloeshed: "fuldtidsledige",
+  arbejdsloese: "fuldtidsledige",
+  bruttoledige: "fuldtidsledige",
+  ledighed: "fuldtidsledige",
+  unemployment: "unemployed",
+  huspriser: "ejendomssalg prisindeks",
+  boligpriser: "ejendomssalg prisindeks",
+  house: "property",
+  turister: "overnatninger",
+  tourists: "nights",
+  indvandrere: "herkomst",
+  immigrants: "ancestry",
+};
+/**
+ * Headline tables (Statistics Denmark key figures) get a popularity prior. Without usage data,
+ * this curated list is the cheapest way to make "befolkning" return FOLK1A instead of one of
+ * ~200 niche population tables. It is a deliberate bias: niche tables still rank when the query names them.
+ */
+const HEADLINE = new Set(["FOLK1A", "FOLK1AM", "BEF5", "BEV22", "BEV3A", "FOD", "DOD", "HISB7", "VIE7", "IEPCT", "BIL51", "BIL10", "HOTEL1", "PRIS111", "PRIS01", "NAN1", "AUS07", "AUS08", "EJ56"]);
+const HEADLINE_BOOST = 1.5;
+
+const SYNONYMS = new Map(Object.entries(SYNONYMS_RAW).map(([k, v]) => [stem(fold(k)), stems(v)]));
+
 function trigrams(token: string): Set<string> {
   const padded = ` ${token} `;
   const out = new Set<string>();
@@ -66,6 +120,8 @@ interface IndexedDoc {
   doc: SearchDoc;
   titleTokens: string[];
   varTokens: string[];
+  /** Penalises long, specific titles and stale tables so headline tables win ties. */
+  prior: number;
   trigramsByToken: Map<string, Set<string>>;
 }
 
@@ -88,12 +144,18 @@ export class TableIndex {
         updated: t.updated ?? null,
         active: t.active ?? true,
       };
-      const titleTokens = [...new Set([...tokenize(t.text), ...tokenize(e?.text ?? ""), fold(t.id)])];
-      const varTokens = [...new Set([...t.variables, ...(e?.variables ?? [])].flatMap(tokenize))];
+      const titleTokens = [...new Set([...stems(t.text), ...stems(e?.text ?? ""), fold(t.id)])];
+      const varTokens = [...new Set([...t.variables, ...(e?.variables ?? [])].flatMap(stems))];
       const trigramsByToken = new Map<string, Set<string>>();
       for (const tok of [...titleTokens, ...varTokens]) if (tok.length >= 4) trigramsByToken.set(tok, trigrams(tok));
-      return { doc, titleTokens, varTokens, trigramsByToken };
+      return { doc, titleTokens, varTokens, trigramsByToken, prior: 1 };
     });
+    const newest = Math.max(...this.docs.map((d) => year(d.doc.latestPeriod)));
+    for (const d of this.docs) {
+      const titleLen = tokenize(d.doc.textDa).length;
+      const age = newest - year(d.doc.latestPeriod);
+      d.prior = (1 / (1 + 0.08 * Math.max(0, titleLen - 2))) * (age > 2 ? 0.7 : age > 0 ? 0.9 : 1) * (HEADLINE.has(d.doc.id) ? HEADLINE_BOOST : 1);
+    }
     for (const d of this.docs) for (const tok of new Set([...d.titleTokens, ...d.varTokens])) this.df.set(tok, (this.df.get(tok) ?? 0) + 1);
   }
 
@@ -107,7 +169,7 @@ export class TableIndex {
 
   search(query: string, opts: { limit?: number; includeInactive?: boolean } = {}): SearchHit[] {
     const limit = opts.limit ?? 10;
-    const qTokens = [...new Set(tokenize(query))];
+    const qTokens = [...new Set(stems(query))];
     if (qTokens.length === 0) return [];
     const n = this.docs.length;
     const idf = (tok: string) => Math.log(1 + n / (1 + (this.df.get(tok) ?? 0)));
@@ -118,7 +180,8 @@ export class TableIndex {
       let score = 0;
       let matched = 0;
       for (const q of qTokens) {
-        const s = this.tokenScore(q, d, idf);
+        let s = this.tokenScore(q, d, idf);
+        for (const syn of SYNONYMS.get(q) ?? []) s = Math.max(s, 0.9 * this.tokenScore(syn, d, idf));
         if (s > 0) matched++;
         score += s;
       }
@@ -126,6 +189,7 @@ export class TableIndex {
       // reward documents that cover more of the query
       score *= 0.5 + matched / qTokens.length;
       if (!d.doc.active) score *= 0.6;
+      score *= d.prior;
       hits.push({ ...d.doc, score: Math.round(score * 100) / 100 });
     }
     return hits.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id)).slice(0, limit);
@@ -151,4 +215,10 @@ export class TableIndex {
     consider(d.varTokens, 0.4);
     return best;
   }
+}
+
+/** "2026K3" -> 2026, "2024:2025" -> 2025, missing -> 0. */
+function year(period: string | null): number {
+  const years = period?.match(/d{4}/g);
+  return years ? Number(years.at(-1)) : 0;
 }

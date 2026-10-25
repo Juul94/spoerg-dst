@@ -1,0 +1,748 @@
+{
+  "tuning": {
+    "queries": 40,
+    "recall": {
+      "recall@1": 0.85,
+      "recall@3": 0.925,
+      "recall@5": 0.925,
+      "recall@10": 0.975
+    },
+    "mrr": 0.8935714285714287,
+    "rows": [
+      {
+        "q": "befolkning",
+        "expect": [
+          "FOLK1A",
+          "BEF5",
+          "FOLK3"
+        ],
+        "rank": 1,
+        "top3": [
+          "BEF5",
+          "FOLK1A",
+          "FOLK1AM"
+        ]
+      },
+      {
+        "q": "befolkning kommune",
+        "expect": [
+          "FOLK1A"
+        ],
+        "rank": 2,
+        "top3": [
+          "LABY01",
+          "FOLK1A",
+          "FOLK1AM"
+        ]
+      },
+      {
+        "q": "folketal kvartal",
+        "expect": [
+          "FOLK1A"
+        ],
+        "rank": 1,
+        "top3": [
+          "FOLK1A",
+          "FOLK1B",
+          "FOLK1C"
+        ]
+      },
+      {
+        "q": "population",
+        "expect": [
+          "FOLK1A",
+          "BEF5",
+          "FOLK3"
+        ],
+        "rank": 2,
+        "top3": [
+          "ALKO2",
+          "BEF5",
+          "FOLK1A"
+        ]
+      },
+      {
+        "q": "population municipality",
+        "expect": [
+          "FOLK1A"
+        ],
+        "rank": 1,
+        "top3": [
+          "FOLK1A",
+          "FOLK1AM",
+          "LABY02"
+        ]
+      },
+      {
+        "q": "indbyggere Aarhus",
+        "expect": [
+          "FOLK1A"
+        ],
+        "rank": 0,
+        "top3": [
+          "KMST007A",
+          "KMST008A",
+          "KMSTA005"
+        ]
+      },
+      {
+        "q": "elbiler",
+        "expect": [
+          "BIL51",
+          "BIL10"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL51",
+          "BIL10",
+          "BIL50"
+        ]
+      },
+      {
+        "q": "nye elbiler",
+        "expect": [
+          "BIL51"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL51",
+          "BIL10",
+          "VIV"
+        ]
+      },
+      {
+        "q": "nyregistrerede personbiler drivmiddel",
+        "expect": [
+          "BIL51"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL51",
+          "BIL50",
+          "BIL55"
+        ]
+      },
+      {
+        "q": "new electric cars",
+        "expect": [
+          "BIL51"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL51",
+          "BIL50",
+          "BIL55"
+        ]
+      },
+      {
+        "q": "bestand personbiler",
+        "expect": [
+          "BIL10"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL10",
+          "BIL52",
+          "BIL11"
+        ]
+      },
+      {
+        "q": "electric cars stock",
+        "expect": [
+          "BIL10"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL10",
+          "BIL52",
+          "BIL21"
+        ]
+      },
+      {
+        "q": "overnatninger hoteller",
+        "expect": [
+          "HOTEL1",
+          "HOTEL7"
+        ],
+        "rank": 1,
+        "top3": [
+          "HOTEL1",
+          "HOTEL2",
+          "HOTEL7"
+        ]
+      },
+      {
+        "q": "hotel nights",
+        "expect": [
+          "HOTEL1",
+          "HOTEL7"
+        ],
+        "rank": 1,
+        "top3": [
+          "HOTEL1",
+          "HOTEL2",
+          "HOTEL7"
+        ]
+      },
+      {
+        "q": "turister overnatninger",
+        "expect": [
+          "HOTEL1",
+          "HOTEL7"
+        ],
+        "rank": 2,
+        "top3": [
+          "TURIST",
+          "HOTEL1",
+          "TURIST1"
+        ]
+      },
+      {
+        "q": "døde",
+        "expect": [
+          "DOD",
+          "BEV3A",
+          "BEV22"
+        ],
+        "rank": 1,
+        "top3": [
+          "BEV3A",
+          "DOD",
+          "DODA1"
+        ]
+      },
+      {
+        "q": "dødsfald",
+        "expect": [
+          "DOD",
+          "BEV3A",
+          "BEV22"
+        ],
+        "rank": 1,
+        "top3": [
+          "BEV3A",
+          "DOD",
+          "BRN10"
+        ]
+      },
+      {
+        "q": "deaths",
+        "expect": [
+          "DOD",
+          "BEV3A",
+          "BEV22"
+        ],
+        "rank": 1,
+        "top3": [
+          "BEV3A",
+          "DOD",
+          "DODA1"
+        ]
+      },
+      {
+        "q": "fødsler",
+        "expect": [
+          "FOD",
+          "BEV3A",
+          "BEV22"
+        ],
+        "rank": 1,
+        "top3": [
+          "BEV3A",
+          "FOD",
+          "FODDAG"
+        ]
+      },
+      {
+        "q": "births",
+        "expect": [
+          "FOD",
+          "BEV3A",
+          "BEV22"
+        ],
+        "rank": 1,
+        "top3": [
+          "BEV3A",
+          "FOD",
+          "FODDAG"
+        ]
+      },
+      {
+        "q": "inflation",
+        "expect": [
+          "PRIS111",
+          "PRIS01"
+        ],
+        "rank": 1,
+        "top3": [
+          "PRIS01",
+          "PRIS9",
+          "PRIS02"
+        ]
+      },
+      {
+        "q": "forbrugerprisindeks",
+        "expect": [
+          "PRIS111",
+          "PRIS01"
+        ],
+        "rank": 1,
+        "top3": [
+          "PRIS01",
+          "PRIS02",
+          "PRIS03"
+        ]
+      },
+      {
+        "q": "consumer price index",
+        "expect": [
+          "PRIS111",
+          "PRIS01"
+        ],
+        "rank": 1,
+        "top3": [
+          "PRIS01",
+          "PRIS02",
+          "PRIS8"
+        ]
+      },
+      {
+        "q": "BNP vækst",
+        "expect": [
+          "NAN1"
+        ],
+        "rank": 1,
+        "top3": [
+          "NAN1",
+          "TEMA9001",
+          "VHUS2"
+        ]
+      },
+      {
+        "q": "GDP growth",
+        "expect": [
+          "NAN1"
+        ],
+        "rank": 1,
+        "top3": [
+          "NAN1",
+          "NAIOVB",
+          "NP25V"
+        ]
+      },
+      {
+        "q": "vielser",
+        "expect": [
+          "VIE7"
+        ],
+        "rank": 1,
+        "top3": [
+          "VIE7",
+          "VIE225",
+          "VIE325"
+        ]
+      },
+      {
+        "q": "marriages",
+        "expect": [
+          "VIE7"
+        ],
+        "rank": 1,
+        "top3": [
+          "VIE7",
+          "OPL2026",
+          "VIE1KOM"
+        ]
+      },
+      {
+        "q": "arbejdsløshed",
+        "expect": [
+          "AUS07",
+          "AUS08",
+          "AUS01"
+        ],
+        "rank": 1,
+        "top3": [
+          "AUS07",
+          "AUS08",
+          "IDRUDD01"
+        ]
+      },
+      {
+        "q": "ledighed procent",
+        "expect": [
+          "AUS07",
+          "AUS08",
+          "AUS01"
+        ],
+        "rank": 7,
+        "top3": [
+          "KUBESK11",
+          "AULKP01",
+          "AULP01"
+        ]
+      },
+      {
+        "q": "bruttoledige",
+        "expect": [
+          "AUS07",
+          "AUS08",
+          "AUS01"
+        ],
+        "rank": 1,
+        "top3": [
+          "AUS07",
+          "AUS08",
+          "IDRUDD01"
+        ]
+      },
+      {
+        "q": "unemployment rate",
+        "expect": [
+          "AUS07",
+          "AUS08",
+          "AUS01"
+        ],
+        "rank": 10,
+        "top3": [
+          "KUBESK11",
+          "RASIE11",
+          "RASIE22"
+        ]
+      },
+      {
+        "q": "middellevetid",
+        "expect": [
+          "HISB7"
+        ],
+        "rank": 1,
+        "top3": [
+          "HISB7",
+          "HISB77",
+          "HISBK"
+        ]
+      },
+      {
+        "q": "life expectancy",
+        "expect": [
+          "HISB7"
+        ],
+        "rank": 1,
+        "top3": [
+          "HISB7",
+          "HISB77",
+          "HISBK"
+        ]
+      },
+      {
+        "q": "indvandrere andel befolkning",
+        "expect": [
+          "IEPCT"
+        ],
+        "rank": 1,
+        "top3": [
+          "IEPCT",
+          "INDOPH2",
+          "INDOPH4"
+        ]
+      },
+      {
+        "q": "immigrants share population",
+        "expect": [
+          "IEPCT"
+        ],
+        "rank": 1,
+        "top3": [
+          "IEPCT",
+          "IDRAKT02",
+          "LABY07"
+        ]
+      },
+      {
+        "q": "huspriser",
+        "expect": [
+          "EJ56"
+        ],
+        "rank": 1,
+        "top3": [
+          "EJ56",
+          "FERIEH4",
+          "EJ131"
+        ]
+      },
+      {
+        "q": "boligpriser",
+        "expect": [
+          "EJ56"
+        ],
+        "rank": 1,
+        "top3": [
+          "EJ56",
+          "EJENEU1",
+          "EJ131"
+        ]
+      },
+      {
+        "q": "house prices",
+        "expect": [
+          "EJ56"
+        ],
+        "rank": 1,
+        "top3": [
+          "EJ56",
+          "EJENEU1",
+          "EJ5"
+        ]
+      },
+      {
+        "q": "BIL51",
+        "expect": [
+          "BIL51"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL51",
+          "BIL5",
+          "BIL50"
+        ]
+      },
+      {
+        "q": "FOLK1A",
+        "expect": [
+          "FOLK1A"
+        ],
+        "rank": 1,
+        "top3": [
+          "FOLK1A",
+          "FOLK1AM",
+          "FOHOJ01"
+        ]
+      }
+    ]
+  },
+  "holdout": {
+    "queries": 14,
+    "recall": {
+      "recall@1": 1,
+      "recall@3": 1,
+      "recall@5": 1,
+      "recall@10": 1
+    },
+    "mrr": 1,
+    "rows": [
+      {
+        "q": "skilsmisser",
+        "expect": [
+          "SKI6",
+          "SKI6KVT",
+          "SKI125",
+          "SKI225",
+          "SKI125K"
+        ],
+        "rank": 1,
+        "top3": [
+          "SKI125",
+          "SKI125K",
+          "SKI225"
+        ]
+      },
+      {
+        "q": "divorces",
+        "expect": [
+          "SKI6",
+          "SKI6KVT",
+          "SKI125",
+          "SKI225",
+          "SKI125K"
+        ],
+        "rank": 1,
+        "top3": [
+          "SKI125",
+          "SKI125K",
+          "SKI225"
+        ]
+      },
+      {
+        "q": "konkurser",
+        "expect": [
+          "KONK3",
+          "KONK5",
+          "KONK6",
+          "KONK7",
+          "KONK8",
+          "KONK9",
+          "KONK25"
+        ],
+        "rank": 1,
+        "top3": [
+          "KONK25",
+          "KONK3",
+          "KONK5"
+        ]
+      },
+      {
+        "q": "bankruptcies",
+        "expect": [
+          "KONK3",
+          "KONK5",
+          "KONK6",
+          "KONK7",
+          "KONK8",
+          "KONK9",
+          "KONK25"
+        ],
+        "rank": 1,
+        "top3": [
+          "KONK25",
+          "KONK3",
+          "KONK5"
+        ]
+      },
+      {
+        "q": "anmeldte forbrydelser",
+        "expect": [
+          "STRAF10",
+          "STRAF11",
+          "STRAF20",
+          "STRAF22",
+          "STRAF24"
+        ],
+        "rank": 1,
+        "top3": [
+          "STRAF10",
+          "STRAF11",
+          "STRAF20"
+        ]
+      },
+      {
+        "q": "reported crimes",
+        "expect": [
+          "STRAF10",
+          "STRAF11",
+          "STRAF20",
+          "STRAF22",
+          "STRAF24"
+        ],
+        "rank": 1,
+        "top3": [
+          "STRAF10",
+          "STRAF11",
+          "STRAF20"
+        ]
+      },
+      {
+        "q": "ledige stillinger",
+        "expect": [
+          "LSK11",
+          "LSK12",
+          "LSK13",
+          "LSK14",
+          "LSK15",
+          "LS01",
+          "LS02"
+        ],
+        "rank": 1,
+        "top3": [
+          "LS01",
+          "LS02",
+          "LSK11"
+        ]
+      },
+      {
+        "q": "job vacancies",
+        "expect": [
+          "LSK11",
+          "LSK12",
+          "LSK13",
+          "LSK14",
+          "LSK15",
+          "LS01",
+          "LS02"
+        ],
+        "rank": 1,
+        "top3": [
+          "LS01",
+          "LS02",
+          "LSK11"
+        ]
+      },
+      {
+        "q": "overnatninger campingpladser",
+        "expect": [
+          "CAMP1"
+        ],
+        "rank": 1,
+        "top3": [
+          "CAMP1",
+          "TURIST4",
+          "HOTEL1"
+        ]
+      },
+      {
+        "q": "camping nights",
+        "expect": [
+          "CAMP1"
+        ],
+        "rank": 1,
+        "top3": [
+          "CAMP1",
+          "TURIST4",
+          "HOTEL1"
+        ]
+      },
+      {
+        "q": "befolkning statsborgerskab",
+        "expect": [
+          "FOLK1B",
+          "FOLK1D"
+        ],
+        "rank": 1,
+        "top3": [
+          "FOLK1B",
+          "FOLK1D",
+          "FOLK2"
+        ]
+      },
+      {
+        "q": "population citizenship",
+        "expect": [
+          "FOLK1B",
+          "FOLK1D"
+        ],
+        "rank": 1,
+        "top3": [
+          "FOLK1B",
+          "FOLK1D",
+          "FOLK2"
+        ]
+      },
+      {
+        "q": "ledige kommune",
+        "expect": [
+          "AUS08",
+          "AULK01",
+          "AUL01",
+          "AUF02"
+        ],
+        "rank": 1,
+        "top3": [
+          "AUS08",
+          "RAS400",
+          "RASIE22"
+        ]
+      },
+      {
+        "q": "nyregistrerede motorkøretøjer",
+        "expect": [
+          "BIL5"
+        ],
+        "rank": 1,
+        "top3": [
+          "BIL5",
+          "BIL53",
+          "BIL51"
+        ]
+      }
+    ]
+  }
+}
