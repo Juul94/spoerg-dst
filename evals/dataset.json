@@ -1,0 +1,1051 @@
+[
+  {
+    "id": "pop-dk-2026k3",
+    "question": "Hvor mange indbyggere havde Danmark 1. juli 2026?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOLK1A",
+      "FOLK1AM"
+    ],
+    "tags": [
+      "ci"
+    ],
+    "refs": {
+      "a": {
+        "q": "FOLK1A Tid=2026K3",
+        "value": 6031699
+      }
+    },
+    "answers": [
+      {
+        "label": "Befolkning",
+        "expr": "a",
+        "value": 6031699
+      }
+    ]
+  },
+  {
+    "id": "pop-aarhus-en",
+    "question": "What was the population of Aarhus municipality on 1 January 2026?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOLK1A",
+      "FOLK1AM"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "FOLK1A OMRÅDE=751 Tid=2026K1",
+        "value": 378361
+      }
+    },
+    "answers": [
+      {
+        "label": "Population",
+        "expr": "a",
+        "value": 378361
+      }
+    ]
+  },
+  {
+    "id": "ev-new-2026m09",
+    "question": "Hvor mange elbiler blev nyregistreret i september 2026?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "BIL51",
+      "BIL53",
+      "BIL54"
+    ],
+    "tags": [
+      "ci"
+    ],
+    "refs": {
+      "a": {
+        "q": "BIL51 DRIV=20225 Tid=2026M09",
+        "value": 17778
+      }
+    },
+    "answers": [
+      {
+        "label": "Elbiler",
+        "expr": "a",
+        "value": 17778
+      }
+    ]
+  },
+  {
+    "id": "ev-stock-2026",
+    "question": "Hvor mange elbiler var der i Danmark pr. 1. januar 2026?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "BIL10",
+      "BIL21",
+      "BIL710",
+      "BIL52"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "BIL10 DRIV=20225 Tid=2026",
+        "value": 540980
+      }
+    },
+    "answers": [
+      {
+        "label": "Elbiler i bestanden",
+        "expr": "a",
+        "value": 540980
+      }
+    ]
+  },
+  {
+    "id": "hotel-nights-2025",
+    "question": "Hvor mange overnatninger var der på danske hoteller og feriecentre i 2025?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "HOTEL1",
+      "HOTEL2",
+      "HOTEL7",
+      "HOTEL8"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "HOTEL1 TAL=1030 PERIODE=1 Tid=2025",
+        "value": 26264510
+      }
+    },
+    "answers": [
+      {
+        "label": "Overnatninger",
+        "expr": "a",
+        "value": 26264510
+      }
+    ]
+  },
+  {
+    "id": "deaths-2025",
+    "question": "Hvor mange døde i Danmark i 2025?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "DOD",
+      "BEV3A",
+      "BEV22",
+      "BEV107"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "DOD Tid=2025",
+        "value": 58185
+      }
+    },
+    "answers": [
+      {
+        "label": "Døde",
+        "expr": "a",
+        "value": 58185
+      }
+    ]
+  },
+  {
+    "id": "births-2025-en",
+    "question": "How many live births were there in Denmark in 2025?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOD",
+      "FODIE",
+      "FODDAG",
+      "FODPF",
+      "FODPM",
+      "BEV3A",
+      "BEV22",
+      "BEV107"
+    ],
+    "tags": [
+      "ci"
+    ],
+    "refs": {
+      "a": {
+        "q": "FOD Tid=2025",
+        "value": 59443
+      }
+    },
+    "answers": [
+      {
+        "label": "Live births",
+        "expr": "a",
+        "value": 59443
+      }
+    ]
+  },
+  {
+    "id": "cpi-yoy-2026m09",
+    "question": "Hvad var inflationen målt som den årlige stigning i forbrugerprisindekset i september 2026?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "PRIS01",
+      "PRIS111",
+      "PRIS113"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "PRIS01 VAREGR=000000 ENHED=300 Tid=2026M09",
+        "value": 2.2
+      }
+    },
+    "answers": [
+      {
+        "label": "Inflation (pct.)",
+        "expr": "a",
+        "value": 2.2,
+        "tol_abs": 0.05
+      }
+    ]
+  },
+  {
+    "id": "gdp-growth-2025",
+    "question": "Hvad var den reale vækst i BNP i 2025?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "NAN1"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "NAN1 TRANSAKT=B1GQK PRISENHED=L_V Tid=2025",
+        "value": 3.5
+      }
+    },
+    "answers": [
+      {
+        "label": "Realvækst (pct.)",
+        "expr": "a",
+        "value": 3.5,
+        "tol_abs": 0.05
+      }
+    ]
+  },
+  {
+    "id": "marriages-2025",
+    "question": "Hvor mange vielser var der i Danmark i 2025?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "VIE7",
+      "VIE225",
+      "VIE325",
+      "VIE825",
+      "VIE825K"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "VIE7 TYPE=VIRP Tid=2025",
+        "value": 32624
+      }
+    },
+    "answers": [
+      {
+        "label": "Vielser",
+        "expr": "a",
+        "value": 32624
+      }
+    ]
+  },
+  {
+    "id": "unemployment-pct-2026m08",
+    "question": "Hvad var den sæsonkorrigerede bruttoledighed i procent af arbejdsstyrken i august 2026?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "AUS07",
+      "AUS08"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "AUS07 YD=TOT SAESONFAK=9 Tid=2026M08",
+        "value": 3.1
+      }
+    },
+    "answers": [
+      {
+        "label": "Bruttoledighed (pct.)",
+        "expr": "a",
+        "value": 3.1,
+        "tol_abs": 0.05
+      }
+    ]
+  },
+  {
+    "id": "life-expectancy-women",
+    "question": "Hvad var middellevetiden for nyfødte piger i Danmark i perioden 2024-2025?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "HISB7",
+      "HISB77",
+      "HISBR"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "HISB7 KØN=K Tid=2024:2025",
+        "value": 83.9
+      }
+    },
+    "answers": [
+      {
+        "label": "Middellevetid (år)",
+        "expr": "a",
+        "value": 83.9,
+        "tol_abs": 0.05
+      }
+    ]
+  },
+  {
+    "id": "immigrant-share-en",
+    "question": "What share of Denmark's population were immigrants on 1 January 2026?",
+    "type": "lookup",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "IEPCT"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "IEPCT HERKOMST=21 Tid=2026",
+        "value": 13
+      }
+    },
+    "answers": [
+      {
+        "label": "Immigrants (%)",
+        "expr": "a",
+        "value": 13,
+        "tol_abs": 0.05
+      }
+    ]
+  },
+  {
+    "id": "house-prices-yoy-2026k2",
+    "question": "Hvor meget steg priserne på enfamiliehuse på landsplan fra 2. kvartal 2025 til 2. kvartal 2026?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "EJ56",
+      "EJ5"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "EJ56 EJENDOMSKATE=0111 TAL=310 Tid=2026K2",
+        "value": 8.4
+      }
+    },
+    "answers": [
+      {
+        "label": "Prisstigning (pct.)",
+        "expr": "a",
+        "value": 8.4,
+        "tol_abs": 0.15
+      }
+    ]
+  },
+  {
+    "id": "ev-new-2025-vs-2024",
+    "question": "Hvor mange flere elbiler blev nyregistreret i 2025 end i 2024?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "BIL51",
+      "BIL53",
+      "BIL54"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "sum BIL51 DRIV=20225 Tid=2024M*",
+        "value": 89037
+      },
+      "b": {
+        "q": "sum BIL51 DRIV=20225 Tid=2025M*",
+        "value": 126410
+      }
+    },
+    "answers": [
+      {
+        "label": "Forskel",
+        "expr": "b - a",
+        "value": 37373,
+        "tol_pct": 1
+      }
+    ]
+  },
+  {
+    "id": "pop-growth-2025",
+    "question": "Hvor meget voksede Danmarks befolkning fra 1. januar 2025 til 1. januar 2026?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOLK1A",
+      "FOLK1AM",
+      "FOLK3",
+      "BEF5",
+      "BY1"
+    ],
+    "tags": [
+      "ci"
+    ],
+    "refs": {
+      "a": {
+        "q": "FOLK1A Tid=2025K1",
+        "value": 5992734
+      },
+      "b": {
+        "q": "FOLK1A Tid=2026K1",
+        "value": 6025603
+      }
+    },
+    "answers": [
+      {
+        "label": "Vækst (personer)",
+        "expr": "b - a",
+        "value": 32869,
+        "tol_pct": 2
+      }
+    ]
+  },
+  {
+    "id": "deaths-2025-vs-2020-en",
+    "question": "Did more people die in Denmark in 2025 than in 2020? By how many?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "DOD",
+      "BEV3A",
+      "BEV22",
+      "BEV107"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "DOD Tid=2020",
+        "value": 54645
+      },
+      "b": {
+        "q": "DOD Tid=2025",
+        "value": 58185
+      }
+    },
+    "answers": [
+      {
+        "label": "Difference",
+        "expr": "b - a",
+        "value": 3540,
+        "tol_pct": 2
+      }
+    ]
+  },
+  {
+    "id": "hotel-july-2026-vs-2025",
+    "question": "Hvor mange overnatninger var der på hoteller og feriecentre i juli 2026 sammenlignet med juli 2025?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "HOTEL1",
+      "HOTEL2",
+      "HOTEL7",
+      "HOTEL8"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "HOTEL1 TAL=1030 PERIODE=07 Tid=2025",
+        "value": 3387839
+      },
+      "b": {
+        "q": "HOTEL1 TAL=1030 PERIODE=07 Tid=2026",
+        "value": 3589689
+      }
+    },
+    "answers": [
+      {
+        "label": "Juli 2025",
+        "expr": "a",
+        "value": 3387839
+      },
+      {
+        "label": "Juli 2026",
+        "expr": "b",
+        "value": 3589689
+      }
+    ]
+  },
+  {
+    "id": "cpi-index-2016-2026",
+    "question": "Hvad var forbrugerprisindekset (2015=100) i september 2016 og i september 2026?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "PRIS01",
+      "PRIS111",
+      "PRIS113"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "PRIS01 VAREGR=000000 ENHED=100 Tid=2016M09",
+        "value": 82.75
+      },
+      "b": {
+        "q": "PRIS01 VAREGR=000000 ENHED=100 Tid=2026M09",
+        "value": 102.6
+      }
+    },
+    "answers": [
+      {
+        "label": "September 2016",
+        "expr": "a",
+        "value": 82.75,
+        "tol_abs": 0.15
+      },
+      {
+        "label": "September 2026",
+        "expr": "b",
+        "value": 102.6,
+        "tol_abs": 0.15
+      }
+    ]
+  },
+  {
+    "id": "gdp-nominal-2020-2025-en",
+    "question": "What was Denmark's GDP in current prices in 2020 and in 2025?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "NAN1"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "NAN1 TRANSAKT=B1GQK PRISENHED=V_M Tid=2020",
+        "value": 2326.6
+      },
+      "b": {
+        "q": "NAN1 TRANSAKT=B1GQK PRISENHED=V_M Tid=2025",
+        "value": 3118.5
+      }
+    },
+    "answers": [
+      {
+        "label": "GDP 2020 (bn DKK)",
+        "expr": "a",
+        "value": 2326.6
+      },
+      {
+        "label": "GDP 2025 (bn DKK)",
+        "expr": "b",
+        "value": 3118.5
+      }
+    ]
+  },
+  {
+    "id": "births-2015-2025",
+    "question": "Hvor mange levendefødte var der i 2015 og i 2025?",
+    "type": "time_comparison",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOD",
+      "FODIE",
+      "FODDAG",
+      "FODPF",
+      "FODPM",
+      "BEV3A",
+      "BEV22",
+      "BEV107"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "FOD Tid=2015",
+        "value": 58205
+      },
+      "b": {
+        "q": "FOD Tid=2025",
+        "value": 59443
+      }
+    },
+    "answers": [
+      {
+        "label": "2015",
+        "expr": "a",
+        "value": 58205
+      },
+      {
+        "label": "2025",
+        "expr": "b",
+        "value": 59443
+      }
+    ]
+  },
+  {
+    "id": "ev-share-2026m09",
+    "question": "Hvor stor en andel af de nyregistrerede personbiler i september 2026 var elbiler?",
+    "type": "calculation",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "BIL51",
+      "BIL53",
+      "BIL54"
+    ],
+    "tags": [
+      "ci"
+    ],
+    "refs": {
+      "a": {
+        "q": "BIL51 DRIV=20225 Tid=2026M09",
+        "value": 17778
+      },
+      "b": {
+        "q": "BIL51 DRIV=20200 Tid=2026M09",
+        "value": 20064
+      }
+    },
+    "answers": [
+      {
+        "label": "Andel el (pct.)",
+        "expr": "a / b * 100",
+        "value": 88.6065,
+        "tol_abs": 0.2
+      }
+    ]
+  },
+  {
+    "id": "aarhus-growth-pct",
+    "question": "Med hvor mange procent voksede befolkningen i Aarhus Kommune fra 1. januar 2016 til 1. januar 2026?",
+    "type": "calculation",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOLK1A",
+      "FOLK1AM",
+      "BY1"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "FOLK1A OMRÅDE=751 Tid=2016K1",
+        "value": 330639
+      },
+      "b": {
+        "q": "FOLK1A OMRÅDE=751 Tid=2026K1",
+        "value": 378361
+      }
+    },
+    "answers": [
+      {
+        "label": "Vækst (pct.)",
+        "expr": "(b - a) / a * 100",
+        "value": 14.4333,
+        "tol_abs": 0.2
+      }
+    ]
+  },
+  {
+    "id": "ev-stock-growth-en",
+    "question": "By what percentage did the number of electric cars in Denmark grow from 1 January 2025 to 1 January 2026?",
+    "type": "calculation",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "BIL10",
+      "BIL21",
+      "BIL710"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "BIL10 DRIV=20225 Tid=2025",
+        "value": 344439
+      },
+      "b": {
+        "q": "BIL10 DRIV=20225 Tid=2026",
+        "value": 540980
+      }
+    },
+    "answers": [
+      {
+        "label": "Growth (%)",
+        "expr": "(b - a) / a * 100",
+        "value": 57.0612,
+        "tol_abs": 0.3
+      }
+    ]
+  },
+  {
+    "id": "women-share-2026",
+    "question": "Hvor mange procent af Danmarks befolkning var kvinder 1. januar 2026?",
+    "type": "calculation",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOLK1A",
+      "FOLK1AM",
+      "FOLK3"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "FOLK1A KØN=2 Tid=2026K1",
+        "value": 3029291
+      },
+      "b": {
+        "q": "FOLK1A Tid=2026K1",
+        "value": 6025603
+      }
+    },
+    "answers": [
+      {
+        "label": "Andel kvinder (pct.)",
+        "expr": "a / b * 100",
+        "value": 50.2737,
+        "tol_abs": 0.1
+      }
+    ]
+  },
+  {
+    "id": "marriages-two-women-share",
+    "question": "Hvor stor en andel af vielserne i 2025 var mellem to kvinder?",
+    "type": "calculation",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "VIE7"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "VIE7 TYPE=V2K Tid=2025",
+        "value": 344
+      },
+      "b": {
+        "q": "VIE7 TYPE=VIRP Tid=2025",
+        "value": 32624
+      }
+    },
+    "answers": [
+      {
+        "label": "Andel (pct.)",
+        "expr": "a / b * 100",
+        "value": 1.0544,
+        "tol_abs": 0.1
+      }
+    ]
+  },
+  {
+    "id": "births-minus-deaths-2025",
+    "question": "Hvor mange flere blev født end døde i Danmark i 2025?",
+    "type": "calculation",
+    "expect": "answered",
+    "match": "all",
+    "tables": [
+      "FOD",
+      "DOD",
+      "BEV3A",
+      "BEV22",
+      "BEV107"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "FOD Tid=2025",
+        "value": 59443
+      },
+      "b": {
+        "q": "DOD Tid=2025",
+        "value": 58185
+      }
+    },
+    "answers": [
+      {
+        "label": "Fødselsoverskud",
+        "expr": "a - b",
+        "value": 1258,
+        "tol_pct": 10
+      }
+    ]
+  },
+  {
+    "id": "copenhagen-ambiguous",
+    "question": "Hvor mange boede der i København 1. juli 2026?",
+    "type": "ambiguous",
+    "expect": "answered",
+    "match": "any",
+    "tables": [
+      "FOLK1A",
+      "FOLK1AM"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "FOLK1A OMRÅDE=101 Tid=2026K3",
+        "value": 670389
+      },
+      "b": {
+        "q": "FOLK1A OMRÅDE=084 Tid=2026K3",
+        "value": 1949336
+      }
+    },
+    "answers": [
+      {
+        "label": "Københavns Kommune",
+        "expr": "a",
+        "value": 670389
+      },
+      {
+        "label": "Region Hovedstaden",
+        "expr": "b",
+        "value": 1949336
+      }
+    ]
+  },
+  {
+    "id": "ev-count-ambiguous-en",
+    "question": "How many electric cars were there in Denmark in 2026?",
+    "type": "ambiguous",
+    "expect": "answered",
+    "match": "any",
+    "tables": [
+      "BIL10",
+      "BIL21",
+      "BIL710",
+      "BIL52"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "BIL10 DRIV=20225 Tid=2026",
+        "value": 540980
+      },
+      "b": {
+        "q": "BIL52 DRIV=20225 Tid=2026M09",
+        "value": 718317
+      },
+      "c": {
+        "q": "BIL52 DRIV=20225 Tid=2026M01",
+        "value": 556396
+      }
+    },
+    "answers": [
+      {
+        "label": "Stock 1 January 2026",
+        "expr": "a",
+        "value": 540980
+      },
+      {
+        "label": "Stock September 2026",
+        "expr": "b",
+        "value": 718317
+      },
+      {
+        "label": "Stock January 2026",
+        "expr": "c",
+        "value": 556396
+      }
+    ]
+  },
+  {
+    "id": "unemployment-ambiguous",
+    "question": "Hvad var arbejdsløsheden i august 2026?",
+    "type": "ambiguous",
+    "expect": "answered",
+    "match": "any",
+    "tables": [
+      "AUS07",
+      "AUS08",
+      "AUS01"
+    ],
+    "tags": [
+      "ci"
+    ],
+    "refs": {
+      "a": {
+        "q": "AUS07 YD=TOT SAESONFAK=9 Tid=2026M08",
+        "value": 3.1
+      },
+      "b": {
+        "q": "AUS07 YD=TOT SAESONFAK=10 Tid=2026M08",
+        "value": 93916.6
+      },
+      "c": {
+        "q": "AUS07 YD=TOT SAESONFAK=22 Tid=2026M08",
+        "value": 3.1
+      },
+      "d": {
+        "q": "AUS07 YD=TOT SAESONFAK=24 Tid=2026M08",
+        "value": 94875.3
+      },
+      "e": {
+        "q": "AUS07 YD=NET SAESONFAK=9 Tid=2026M08",
+        "value": 2.7
+      }
+    },
+    "answers": [
+      {
+        "label": "Bruttoledighed, sæsonkorr. (pct.)",
+        "expr": "a",
+        "value": 3.1,
+        "tol_abs": 0.05
+      },
+      {
+        "label": "Bruttoledige, sæsonkorr. (antal)",
+        "expr": "b",
+        "value": 93916.6
+      },
+      {
+        "label": "Bruttoledighed, faktisk (pct.)",
+        "expr": "c",
+        "value": 3.1,
+        "tol_abs": 0.05
+      },
+      {
+        "label": "Bruttoledige, faktisk (antal)",
+        "expr": "d",
+        "value": 94875.3
+      },
+      {
+        "label": "Nettoledighed, sæsonkorr. (pct.)",
+        "expr": "e",
+        "value": 2.7,
+        "tol_abs": 0.05
+      }
+    ]
+  },
+  {
+    "id": "tourist-nights-ambiguous",
+    "question": "Hvor mange turistovernatninger var der på hoteller i Danmark i 2025?",
+    "type": "ambiguous",
+    "expect": "answered",
+    "match": "any",
+    "tables": [
+      "HOTEL1",
+      "HOTEL2",
+      "HOTEL7",
+      "HOTEL8"
+    ],
+    "tags": [],
+    "refs": {
+      "a": {
+        "q": "HOTEL1 TAL=1030 PERIODE=1 Tid=2025",
+        "value": 26264510
+      },
+      "b": {
+        "q": "HOTEL1 NATION1=UDLAN TAL=1030 PERIODE=1 Tid=2025",
+        "value": 10763599
+      }
+    },
+    "answers": [
+      {
+        "label": "Alle overnatninger",
+        "expr": "a",
+        "value": 26264510
+      },
+      {
+        "label": "Udenlandske overnatninger",
+        "expr": "b",
+        "value": 10763599
+      }
+    ]
+  },
+  {
+    "id": "nodata-future-evs",
+    "question": "Hvor mange elbiler blev nyregistreret i Danmark i 2028?",
+    "type": "no_data",
+    "expect": "not_found",
+    "match": "all",
+    "tables": [],
+    "tags": [
+      "ci"
+    ],
+    "refs": {},
+    "answers": []
+  },
+  {
+    "id": "nodata-cats",
+    "question": "Hvor mange katte er der i Danmark?",
+    "type": "no_data",
+    "expect": "not_found",
+    "match": "all",
+    "tables": [],
+    "tags": [],
+    "refs": {},
+    "answers": []
+  },
+  {
+    "id": "nodata-share-price-en",
+    "question": "What is the current share price of Novo Nordisk?",
+    "type": "no_data",
+    "expect": "not_found",
+    "match": "all",
+    "tables": [],
+    "tags": [],
+    "refs": {},
+    "answers": []
+  },
+  {
+    "id": "nodata-stockholm",
+    "question": "Hvor mange indbyggere har Stockholm kommun i Sverige?",
+    "type": "no_data",
+    "expect": "not_found",
+    "match": "all",
+    "tables": [],
+    "tags": [],
+    "refs": {},
+    "answers": []
+  },
+  {
+    "id": "nodata-ufo-en",
+    "question": "How many UFO sightings were reported in Denmark in 2025?",
+    "type": "no_data",
+    "expect": "not_found",
+    "match": "all",
+    "tables": [],
+    "tags": [],
+    "refs": {},
+    "answers": []
+  }
+]

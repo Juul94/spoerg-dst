@@ -10,6 +10,8 @@
     "ask": "npm run ask -w packages/agent --",
     "eval": "npm run eval -w evals --",
     "eval:verify": "npm run verify -w evals",
+    "eval:compare": "npm run compare -w evals --",
+    "eval:retrieval": "npm run retrieval -w evals --",
     "record-fixtures": "npm run record -w packages/mcp-server",
     "web": "npm run dev -w apps/web"
   },

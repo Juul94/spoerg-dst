@@ -1,0 +1,26 @@
+{
+  "name": "@spoerg-dst/evals",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "eval": "tsx src/run.ts",
+    "verify": "tsx src/verify.ts",
+    "retrieval": "tsx src/retrieval.ts",
+    "compare": "tsx src/compare.ts",
+    "probe": "tsx scripts/probe.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@spoerg-dst/agent": "0.1.0",
+    "statbank-mcp": "0.1.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  }
+}
