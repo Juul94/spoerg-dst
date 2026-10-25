@@ -1,0 +1,17 @@
+{
+  "name": "spoerg-dst",
+  "private": true,
+  "description": "Ask Statistics Denmark: an MCP server + Claude agent that answers questions with official Danish statistics",
+  "workspaces": ["packages/mcp-server", "packages/agent", "evals", "apps/web"],
+  "scripts": {
+    "build": "npm run build -w packages/mcp-server && npm run build -w packages/agent",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test -w packages/mcp-server && npm run test -w packages/agent && npm run test -w evals",
+    "ask": "npm run ask -w packages/agent --",
+    "eval": "npm run eval -w evals --",
+    "eval:verify": "npm run verify -w evals",
+    "record-fixtures": "npm run record -w packages/mcp-server",
+    "web": "npm run dev -w apps/web"
+  },
+  "engines": { "node": ">=20" }
+}

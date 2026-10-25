@@ -1,0 +1,10 @@
+{
+ "endpoint": "tableinfo",
+ "request": {
+  "table": "NOPE999",
+  "lang": "da",
+  "format": "JSON"
+ },
+ "status": 400,
+ "body": "{\"errorTypeCode\":\"EXTRACT-NOTFOUND\",\"message\":\"Tabel findes ikke: NOPE999\"}"
+}

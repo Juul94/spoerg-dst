@@ -1,0 +1,26 @@
+{
+ "endpoint": "data",
+ "request": {
+  "table": "BIL51",
+  "format": "CSV",
+  "valuePresentation": "Code",
+  "lang": "da",
+  "variables": [
+   {
+    "code": "DRIV",
+    "values": [
+     "20205",
+     "20225"
+    ]
+   },
+   {
+    "code": "Tid",
+    "values": [
+     "2026M09"
+    ]
+   }
+  ]
+ },
+ "status": 200,
+ "body": "DRIV;TID;INDHOLD\r\n20205;2026M09;1665\r\n20225;2026M09;17778\r\n"
+}

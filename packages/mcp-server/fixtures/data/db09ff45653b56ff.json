@@ -1,0 +1,19 @@
+{
+ "endpoint": "data",
+ "request": {
+  "table": "FOLK1A",
+  "format": "CSV",
+  "valuePresentation": "Code",
+  "lang": "en",
+  "variables": [
+   {
+    "code": "Tid",
+    "values": [
+     "2026K3"
+    ]
+   }
+  ]
+ },
+ "status": 200,
+ "body": "TID;INDHOLD\r\n2026K3;6031699\r\n"
+}

@@ -1,0 +1,37 @@
+{
+  "name": "statbank-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Statistics Denmark (Danmarks Statistik) StatBank API: search tables, read metadata, fetch data",
+  "type": "module",
+  "license": "MIT",
+  "author": "Juul94",
+  "repository": { "type": "git", "url": "git+https://github.com/Juul94/spoerg-dst.git", "directory": "packages/mcp-server" },
+  "keywords": ["mcp", "model-context-protocol", "statistics-denmark", "danmarks-statistik", "statbank", "claude"],
+  "bin": { "statbank-mcp": "dist/bin.js" },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }
+  },
+  "files": ["dist", "README.md"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "record": "tsx scripts/record-fixtures.ts",
+    "start": "node dist/bin.js",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/bin.js",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  }
+}
