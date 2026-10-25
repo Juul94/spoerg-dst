@@ -4,10 +4,11 @@ import type { AgentEvent, AgentResult } from "@spoerg-dst/agent";
 import { useRef, useState, type FormEvent } from "react";
 import { Chart } from "@/components/Chart";
 
+// Same questions as DEMO_QUESTIONS in packages/agent/src/demo.ts, so they also work without an API key.
 const EXAMPLES = [
-  "Hvor mange elbiler blev indregistreret i 2025?",
+  "Hvor mange bor der i Danmark?",
   "Hvordan har befolkningstallet udviklet sig siden 2015?",
-  "Hvad var inflationen i Danmark sidste år?",
+  "Hvor mange elbiler blev nyregistreret i 2025?",
   "How many people live in Aarhus municipality?",
   "Hvor mange katte er der i Danmark?",
 ];
@@ -147,6 +148,13 @@ export default function Page() {
           </button>
         ))}
       </div>
+
+      {model === "demo-scripted" && (
+        <p className="mt-8 rounded-xl border border-line bg-panel p-4 text-sm text-muted">
+          Demo-tilstand: der er ingen API-nøgle på serveren, så værktøjsvalgene er forudbestemte i stedet for at komme fra Claude.
+          Værktøjerne, valideringen og tallene fra Statistikbanken er ægte.
+        </p>
+      )}
 
       {error && (
         <div role="alert" className="mt-8 rounded-xl border border-accent bg-accent-soft p-4 text-sm">

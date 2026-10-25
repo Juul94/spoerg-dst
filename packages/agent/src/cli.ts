@@ -2,6 +2,7 @@ import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
 import { clientOptionsFromEnv, StatbankClient, StatbankTools } from "statbank-mcp";
 import { DEFAULT_MODEL, runAgent, type AgentEvent } from "./agent.js";
+import { DEMO_MODEL, DEMO_QUESTIONS, demoClient } from "./demo.js";
 import { PROMPTS, DEFAULT_PROMPT, type PromptVersion } from "./prompts.js";
 import { writeTrace } from "./trace.js";
 
@@ -20,6 +21,7 @@ const { values: args, positionals } = parseArgs({
     effort: { type: "string" },
     "max-steps": { type: "string", default: "12" },
     json: { type: "boolean", default: false },
+    demo: { type: "boolean", default: false },
   },
 });
 
@@ -28,7 +30,12 @@ if (!question) {
   console.error('Usage: npm run ask -- "Hvor mange elbiler blev indregistreret i 2025?" [--model haiku] [--prompt v1] [--json]');
   process.exit(2);
 }
-if (!process.env.ANTHROPIC_API_KEY) {
+const demo = args.demo ? demoClient(question) : null;
+if (args.demo && !demo) {
+  console.error(["--demo only knows these questions:", ...DEMO_QUESTIONS.map((q) => `  ${q}`)].join("\n"));
+  process.exit(2);
+}
+if (!demo && !process.env.ANTHROPIC_API_KEY) {
   console.error("ANTHROPIC_API_KEY is not set. Copy .env.example to .env and add your key.");
   process.exit(2);
 }
@@ -51,7 +58,8 @@ const onEvent = (e: AgentEvent) => {
 const tools = new StatbankTools(new StatbankClient(clientOptionsFromEnv()));
 const result = await runAgent(question, {
   tools,
-  model: args.model,
+  model: demo ? DEMO_MODEL : args.model,
+  ...(demo ? { client: demo } : {}),
   promptVersion: args.prompt as PromptVersion,
   maxSteps: Number(args["max-steps"]),
   ...(args.effort ? { effort: args.effort as "low" | "medium" | "high" } : {}),

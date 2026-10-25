@@ -56,7 +56,17 @@ Design decisions are recorded in [`docs/adr`](docs/adr):
 
 ## Running it
 
-You need Node 20 or later (developed on Node 24) and an [Anthropic API key](https://console.anthropic.com) for the agent. The MCP server and the tests need no key.
+You need Node 20 or later (developed on Node 24). The agent needs an [Anthropic API key](https://console.anthropic.com); the MCP server, the tests and demo mode do not.
+
+### Demo mode (free, no key)
+
+Without `ANTHROPIC_API_KEY`, the web app and `npm run ask -- --demo` run five example questions with a scripted stand-in for Claude (`packages/agent/src/demo.ts`). Only the tool choices are hard-coded. The agent loop, input validation, answer validation, StatBank calls and numbers are real and fetched live, so this shows the full pipeline at zero cost. It is not a measure of the model. Other questions are rejected until a key is set.
+
+```bash
+npm install && npm run build
+npm run web                                                        # click an example question
+npm run ask -- "Hvor mange elbiler blev nyregistreret i 2025?" --demo
+```
 
 ```bash
 npm install

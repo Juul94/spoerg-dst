@@ -1,4 +1,4 @@
-import { DEFAULT_MODEL, DEFAULT_PROMPT, PROMPTS, runAgent, type AgentEvent, type PromptVersion } from "@spoerg-dst/agent";
+import { DEFAULT_MODEL, DEFAULT_PROMPT, DEMO_MODEL, demoClient, PROMPTS, runAgent, type AgentEvent, type PromptVersion } from "@spoerg-dst/agent";
 import { askLimiter, MAX_QUESTION_CHARS, statbankTools } from "@/lib/server";
 
 export const runtime = "nodejs";
@@ -8,10 +8,6 @@ export const maxDuration = 180;
 const json = (status: number, error: string) => Response.json({ error }, { status });
 
 export async function POST(req: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return json(503, "ANTHROPIC_API_KEY er ikke sat på serveren. Kopiér .env.example til .env og tilføj din nøgle.");
-  }
-
   let question: unknown;
   try {
     ({ question } = (await req.json()) as { question?: unknown });
@@ -20,6 +16,12 @@ export async function POST(req: Request) {
   }
   if (typeof question !== "string" || !question.trim()) return json(400, "Skriv et spørgsmål.");
   if (question.length > MAX_QUESTION_CHARS) return json(400, `Spørgsmålet må højst være ${MAX_QUESTION_CHARS} tegn.`);
+
+  // Without a key the app runs in demo mode: scripted decisions, real tools and live data.
+  const demo = process.env.ANTHROPIC_API_KEY ? null : demoClient(question);
+  if (!process.env.ANTHROPIC_API_KEY && !demo) {
+    return json(503, "Demo-tilstand: ingen API-nøgle på serveren, så kun eksempelspørgsmålene virker.");
+  }
 
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "local";
   const wait = askLimiter().take(ip);
@@ -42,7 +44,8 @@ export async function POST(req: Request) {
       try {
         await runAgent(question.trim(), {
           tools: statbankTools(),
-          model: process.env.AGENT_MODEL ?? DEFAULT_MODEL,
+          model: demo ? DEMO_MODEL : (process.env.AGENT_MODEL ?? DEFAULT_MODEL),
+          ...(demo ? { client: demo } : {}),
           promptVersion,
           onEvent: send,
         });
