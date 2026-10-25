@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f6f2;
+  --panel: #ffffff;
+  --ink: #1b1d21;
+  --muted: #6b6f76;
+  --line: #e4e2dc;
+  --accent: #b4232a;
+  --accent-soft: #fbe9e9;
+  --ok: #2f7d4f;
+  --chart-1: #b4232a;
+  --chart-2: #2b5d8a;
+  --chart-3: #c58a17;
+  --chart-4: #4c8a5b;
+  --chart-5: #7a4f9a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131416;
+    --panel: #1c1e21;
+    --ink: #ececec;
+    --muted: #9a9ea6;
+    --line: #2d3035;
+    --accent: #ef5a60;
+    --accent-soft: #3a1f21;
+    --ok: #5cbf83;
+    --chart-1: #ef5a60;
+    --chart-2: #6aa6dc;
+    --chart-3: #e3b34a;
+    --chart-4: #78c08a;
+    --chart-5: #b48ad6;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", Menlo, monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}

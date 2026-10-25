@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run build -w packages/mcp-server && npm run build -w packages/agent",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "test": "npm run test -w packages/mcp-server && npm run test -w packages/agent && npm run test -w evals",
+    "test": "npm run test -w packages/mcp-server && npm run test -w packages/agent && npm run test -w evals && npm run test -w apps/web",
     "ask": "npm run ask -w packages/agent --",
     "eval": "npm run build && npm run eval -w evals --",
     "eval:verify": "npm run verify -w evals",
