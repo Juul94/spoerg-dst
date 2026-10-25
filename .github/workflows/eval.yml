@@ -1,0 +1,37 @@
+name: Eval subset
+
+# Runs the 7-case "ci" subset against the live StatBank API with Claude Haiku (~$0.02 per run).
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Skip without API key
+        id: key
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY secret not set (or PR from a fork); skipping eval."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.key.outputs.skip != 'true'
+        run: npm ci
+      - if: steps.key.outputs.skip != 'true'
+        run: npm run eval -- --subset ci --model haiku --yes --min-pass 0.6
+      - if: steps.key.outputs.skip != 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: evals/results/*.json

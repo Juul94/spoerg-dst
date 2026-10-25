@@ -1,6 +1,6 @@
 // Offline retrieval benchmark for search_tables: does the right table rank in the top k?
 // Uses the recorded table list (replay mode), so it is free and deterministic.
-// npm run eval:retrieval -- [--label baseline] [--verbose]
+// npm run eval:retrieval -- [--label baseline] [--verbose] [--min-mrr 0.85]
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
@@ -83,7 +83,7 @@ export function benchmark(index: TableIndex, queries = QUERIES) {
 }
 
 if (process.argv[1]?.endsWith("retrieval.ts")) {
-  const { values: args } = parseArgs({ options: { label: { type: "string" }, verbose: { type: "boolean", default: false } } });
+  const { values: args } = parseArgs({ options: { label: { type: "string" }, verbose: { type: "boolean", default: false }, "min-mrr": { type: "string", default: "0" } } });
   const client = new StatbankClient({
     mode: "replay",
     fixturesDir: fileURLToPath(new URL("../../packages/mcp-server/fixtures", import.meta.url)),
@@ -105,5 +105,10 @@ if (process.argv[1]?.endsWith("retrieval.ts")) {
     const file = join(dir, `retrieval_${args.label}.json`);
     await writeFile(file, JSON.stringify({ tuning: res, holdout }, null, 2));
     console.log(`Saved ${file}`);
+  }
+  const min = Number(args["min-mrr"]);
+  if (res.mrr < min || holdout.mrr < min) {
+    console.error(`MRR below --min-mrr ${min}`);
+    process.exitCode = 1;
   }
 }

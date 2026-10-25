@@ -9,7 +9,7 @@ const EXAMPLES = [
   "Hvordan har befolkningstallet udviklet sig siden 2015?",
   "Hvad var inflationen i Danmark sidste år?",
   "How many people live in Aarhus municipality?",
-  "Hvor mange danskere har en kat?",
+  "Hvor mange katte er der i Danmark?",
 ];
 
 type StreamEvent = AgentEvent | { type: "error"; message: string };
