@@ -167,6 +167,8 @@ export interface StoredResult {
   title: string;
   unit: string | null;
   columns: string[];
+  /** Index of the time column in `columns`, or null when time is fixed. */
+  timeColumn: number | null;
   rows: Array<Array<string | number | null>>;
   fixed: GetDataOutput["fixed"];
   source: GetDataOutput["source"];
@@ -306,7 +308,8 @@ export class StatbankTools {
       api_query: { table: info.id, lang: input.lang, variables: apiVariables },
     };
     const id = `r${++this.resultCounter}_${info.id}`;
-    this.storeResult({ id, tableId: info.id, title: info.text, unit: info.unit ?? null, columns, rows: table, fixed, source });
+    const t = dims.findIndex((d) => d.variable.time);
+    this.storeResult({ id, tableId: info.id, title: info.text, unit: info.unit ?? null, columns, timeColumn: t < 0 ? null : t, rows: table, fixed, source });
 
     return {
       result_id: id,
